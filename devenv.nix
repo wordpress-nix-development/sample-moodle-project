@@ -6,7 +6,7 @@
   env.MOODLE_REPO = "https://github.com/moodle/moodle";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  packages = [ pkgs.git pkgs.selenium-server-standalone pkgs.chromedriver ];
 
   # https://devenv.sh/languages/
   languages.javascript = {
@@ -43,6 +43,7 @@
 
   # https://devenv.sh/processes/
   processes.cron.exec = "while true; do php html/admin/cli/cron.php ; sleep 60; done";
+  processes.selenium.exec = "selenium-server";
 
   # https://devenv.sh/services/
   services.mysql = {
@@ -97,6 +98,7 @@
   # https://devenv.sh/scripts/
   enterShell = ''
     test -d html || git clone --depth 1 --branch ${config.env.MOODLE_VERSION} ${config.env.MOODLE_REPO} html
+    test -d moodle-browser-config || git clone https://github.com/andrewnicols/moodle-browser-config moodle-browser-config
     composer install
     php --version
   '';

@@ -23,3 +23,11 @@ Default MySQL credentials are defined in `devenv.nix`. If the `moodle` database 
 ## Managing code
 
 Moodle core is a shallow git clone in the `html` directory. There is a bare bones `composer.json` that can install plugins into that same directory.
+
+## Behat testing
+
+[moodle-browser-config](https://github.com/andrewnicols/moodle-browser-config) is automatically cloned to `moodle-browser-config` in the project root. Add the following to your config.php *before* initializing Behat:
+
+```php
+require_once('/path/to/your/project/moodle-browser-config/init.php');
+```

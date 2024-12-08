@@ -11,4 +11,6 @@ devenv.local.nix
 # Moodle site
 /html/
 /moodledata/
+/behat_moodledata/
 /vendor/
+/moodle-browser-config/
