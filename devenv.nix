@@ -99,6 +99,9 @@
   enterShell = ''
     test -d html || git clone --depth 1 --branch ${config.env.MOODLE_VERSION} ${config.env.MOODLE_REPO} html
     test -d moodle-browser-config || git clone https://github.com/andrewnicols/moodle-browser-config moodle-browser-config
+    test -f html/config.php || cp config.php.dist html/config.php
+    test -d behat_moodledata || mkdir behat_moodledata
+    test -d behat_faildumps || mkdir behat_faildumps
     composer install
     php --version
   '';

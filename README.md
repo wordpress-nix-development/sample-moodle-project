@@ -18,7 +18,11 @@ URLs:
 
 ## Installing Moodle
 
-Default MySQL credentials are defined in `devenv.nix`. If the `moodle` database does not exist on `devenv up` it will create it. Cron is enabled by default.
+The `config.php.dist` file is copied to `html/config.php` if the latter does not exist. Step through the command line installation to install the database:
+
+```bash
+php admin/cli/install_database.php --lang=en_us --adminuser=admin --adminemail=somebody@example.net --agree-license --fullname=TEST --shortname=TEST --supportemail=somebody@example.net --adminpass=password
+```
 
 ## Managing code
 
@@ -31,3 +35,5 @@ Moodle core is a shallow git clone in the `html` directory. There is a bare bone
 ```php
 require_once('/path/to/your/project/moodle-browser-config/init.php');
 ```
+
+Faildumps are stored in the `/behatfaildumps/` directory.
